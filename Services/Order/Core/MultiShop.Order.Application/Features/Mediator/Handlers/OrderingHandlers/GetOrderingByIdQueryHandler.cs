@@ -21,6 +21,7 @@ namespace MultiShop.Order.Application.Features.Mediator.Handlers.OrderingHandler
 		public async Task<GetOrderingByIdQueryResult> Handle(GetOrderingByIdQuery request, CancellationToken cancellationToken)
 		{
 			var values = await _repository.GetByIdAsync(request.Id);
+			if(values == null) throw new KeyNotFoundException($"ID'si {request.Id} olan sipariş bulunamadı.");
 			return new GetOrderingByIdQueryResult
 			{
 				OrderDate = values.OrderDate,

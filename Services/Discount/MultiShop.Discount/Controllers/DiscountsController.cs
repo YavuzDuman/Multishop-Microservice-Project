@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Discount.Dtos;
 using MultiShop.Discount.Entities;
@@ -6,13 +7,14 @@ using MultiShop.Discount.Services;
 
 namespace MultiShop.Discount.Controllers
 {
+	[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class Discounts : ControllerBase
+    public class DiscountsController : ControllerBase
     {
         private readonly IDiscountService _discountService;
 
-		public Discounts(IDiscountService discountService)
+		public DiscountsController(IDiscountService discountService)
 		{
 			_discountService = discountService;
 		}
